@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trending - Game Library Hub</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/trending.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="nav-logo">
+        <img src="/Icon.png" alt="Game Library Hub Logo" class="logo-img">
+      </div>
+      <a href="/">Home</a>
+      <a href="/manage.html">My Library</a>
+      <a href="/trending.html" class="active">Trending</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Trending & New Games</h1>
+
+    <div class="trending-info">
+      <p>Discover the latest and most popular games. Click "Add to Library" to add any game to your personal collection.</p>
+    </div>
+
+    <div id="alertContainer"></div>
+
+    <div class="trending-filters">
+      <button class="filter-btn active" data-filter="all">All Games</button>
+      <button class="filter-btn" data-filter="trending">IGDB Trending</button>
+      <button class="filter-btn" data-filter="new">My Library</button>
+    </div>
+
+    <div id="trendingContainer" class="games-grid">
+      <div class="empty-state">
+        <h3>Loading games...</h3>
+        <p>Please wait while we fetch the available games.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/trending.js"></script>
+</body>
+</html>

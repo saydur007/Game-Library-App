@@ -1,0 +1,73 @@
+/* Trending page specific styles */
+
+.trending-filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  border: 2px solid #667eea;
+  background-color: transparent;
+  color: #667eea;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: #667eea;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.trending-badge {
+  display: inline-block;
+  background-color: #ef4444;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.new-badge {
+  display: inline-block;
+  background-color: #10b981;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.trending-info {
+  background: rgba(102, 126, 234, 0.15);
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  color: #b0b0b0;
+  border-left: 4px solid #667eea;
+}
+
+.trending-info p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.game-card.trending {
+  border-top: 4px solid #ef4444;
+}
+
+.game-card.new {
+  border-top: 4px solid #10b981;
+}
