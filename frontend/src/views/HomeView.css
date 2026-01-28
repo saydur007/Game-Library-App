@@ -1,0 +1,134 @@
+/* Home page specific styles */
+
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  color: #e0e0e0;
+}
+
+.hero h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 20px;
+  margin-bottom: 30px;
+  opacity: 0.9;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  color: #b0b0b0;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-buttons a {
+  padding: 15px 40px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.hero-btn-primary {
+  background-color: #667eea;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.hero-btn-primary:hover {
+  background-color: #5568d3;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+}
+
+.hero-btn-secondary {
+  background-color: transparent;
+  color: #667eea;
+  border: 2px solid #667eea;
+}
+
+.hero-btn-secondary:hover {
+  background-color: #667eea;
+  color: white;
+  transform: scale(1.05);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 60px;
+}
+
+.feature-card {
+  background: rgba(40, 40, 40, 0.9);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+  border: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.3);
+  border-color: rgba(102, 126, 234, 0.4);
+}
+
+.feature-card:active {
+  opacity: 0.95;
+}
+
+.feature-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.feature-card h3 {
+  color: #667eea;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.feature-card p {
+  color: #a0a0a0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-buttons a {
+    width: 100%;
+    max-width: 300px;
+  }
+}
