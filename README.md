@@ -3,7 +3,8 @@
 ## Overview
 Game Library Hub is a simple web app for tracking a personal video game collection. It lets users add games, log hours played, and browse trending titles pulled from IGDB with quick buy links. The project demonstrates a MERN-style workflow with an Express backend, a JSON data store, and a multi-page frontend.
 
-Future extensions could include: user accounts, MongoDB persistence, search and filters, platform/genre tags, and richer IGDB data (covers, release dates, and ratings).
+## Future Extensions
+Plan on extending this project by adding a Mongo Database and also a proper front end library using REACT. Plan is to also add registartion and login for users where everyone can track their games. Also include include: search and filters, platform/genre tags, and richer IGDB data (covers, release dates, and ratings).
 
 ## Documentation
 
@@ -18,7 +19,6 @@ Future extensions could include: user accounts, MongoDB persistence, search and 
    IGDB_CLIENT_SECRET=your_client_secret
    PORT=3000
    ```
-   See `IGDB_SETUP.md` for details.
 3. Start the server:
    ```bash
    npm start
@@ -53,3 +53,4 @@ This submission includes an Express server (`server.js`), REST endpoints in `rou
 
 **Successes:** building a working CRUD flow (add, delete, update hours), connecting the frontend to the API, and integrating external data from IGDB for trending games.  
 **Challenges:** coordinating the IGDB auth flow and handling errors (token refresh, failed requests), and keeping the UI state consistent after updates. Those were handled with clear API responses and reloads after actions.
+
