@@ -103,7 +103,7 @@ addGameForm.addEventListener('submit', async (e) => {
       return;
     }
 
-    showAlert(`✅ ${result.data.title} added to your library!`, 'success');
+    showAlert(`${result.data.title} added to your library!`, 'success');
     addGameForm.reset();
     loadLibrary();
   } catch (error) {
@@ -128,7 +128,7 @@ async function deleteGame(gameId) {
       return;
     }
 
-    showAlert(`✅ ${result.data.title} removed from your library`, 'success');
+    showAlert(`${result.data.title} removed from your library`, 'success');
     loadLibrary();
   } catch (error) {
     console.error('Error deleting game:', error);
@@ -152,7 +152,7 @@ async function updateHoursPlayed(gameId, hours) {
       return;
     }
 
-    showAlert(`✅ Hours played updated to ${hours}!`, 'success');
+    showAlert(`Hours played updated to ${hours}!`, 'success');
     loadLibrary();
   } catch (error) {
     console.error('Error updating hours:', error);

@@ -1,20 +1,11 @@
 [
   {
-    "id": 1,
-    "title": "Elden Ring",
-    "genre": "Action RPG",
-    "hoursPlayed": 90,
-    "price": 59.99,
-    "buyLink": "https://store.playstation.com/elden-ring",
-    "dateAdded": "2024-01-10T12:00:00Z"
-  },
-  {
     "id": 2,
     "title": "Baldur's Gate 3",
     "genre": "RPG",
     "hoursPlayed": 120,
     "price": 59.99,
-    "buyLink": "https://store.steampowered.com/app/1238140",
+    "buyLink": "https://store.steampowered.com/app/1086940/Baldurs_Gate_3/",
     "dateAdded": "2024-01-15T12:00:00Z"
   },
   {
@@ -23,7 +14,7 @@
     "genre": "Action RPG",
     "hoursPlayed": 45,
     "price": 39.99,
-    "buyLink": "https://store.playstation.com/cyberpunk-2077",
+    "buyLink": "https://store.steampowered.com/app/1091500/Cyberpunk_2077/",
     "dateAdded": "2024-02-01T12:00:00Z"
   },
   {
@@ -32,7 +23,7 @@
     "genre": "Action RPG",
     "hoursPlayed": 9,
     "price": 60,
-    "buyLink": "#",
+    "buyLink": "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
     "dateAdded": "2026-01-28T02:41:08.503Z"
   },
   {
@@ -41,7 +32,7 @@
     "genre": "Action RPG",
     "hoursPlayed": 5,
     "price": 60,
-    "buyLink": "#",
+    "buyLink": "https://store.steampowered.com/app/1245620/Elden_Ring/",
     "dateAdded": "2026-01-28T03:23:17.718Z"
   },
   {
@@ -50,7 +41,7 @@
     "genre": "8",
     "hoursPlayed": 0,
     "price": 29.99,
-    "buyLink": "#",
+    "buyLink": "https://store.steampowered.com/app/1238140/Bubsy_3D_Bubsy_Visits_the_James_Turrell_Retrospective/",
     "dateAdded": "2026-01-28T03:37:29.775Z"
   }
 ]

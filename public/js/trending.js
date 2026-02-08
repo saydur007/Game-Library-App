@@ -187,7 +187,7 @@ async function addGameToLibrary(game) {
       return;
     }
 
-    showAlert(`✅ ${result.data.title} added to your library!`, 'success');
+    showAlert(`${result.data.title} added to your library!`, 'success');
     
     // Reload to show updated state
     loadAllGames();

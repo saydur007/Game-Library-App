@@ -43,7 +43,6 @@ router.post('/', (req, res) => {
   try {
     const { title, genre, hoursPlayed, price, buyLink } = req.body;
 
-    // Validate required fields
     if (!title || !genre || price === undefined) {
       return res.status(400).json({ 
         success: false, 
@@ -106,7 +105,6 @@ router.put('/:id', (req, res) => {
     const gameId = parseInt(req.params.id);
     const { hoursPlayed } = req.body;
 
-    // Validate input
     if (hoursPlayed === undefined || hoursPlayed === null) {
       return res.status(400).json({ 
         success: false, 

@@ -13,7 +13,7 @@ const IGDB_API_URL = 'https://api.igdb.com/v4';
 
 // Get or refresh access token
 async function getAccessToken() {
-  // Check if token is still valid
+  // We check if token is still valid
   if (accessToken && tokenExpiration && Date.now() < tokenExpiration) {
     return accessToken;
   }
@@ -28,7 +28,7 @@ async function getAccessToken() {
     });
 
     accessToken = response.data.access_token;
-    tokenExpiration = Date.now() + (response.data.expires_in * 1000); // Convert seconds to milliseconds
+    tokenExpiration = Date.now() + (response.data.expires_in * 1000); 
 
     console.log('✓ IGDB token obtained successfully');
     return accessToken;

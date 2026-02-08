@@ -17,7 +17,6 @@ app.use(express.static('public'));
 app.use('/api/games', gamesRouter);
 app.use('/api/igdb', require('./routes/igdb'));
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
