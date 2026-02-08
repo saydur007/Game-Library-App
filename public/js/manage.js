@@ -1,4 +1,4 @@
-// Manage Library Page - Handle adding and deleting games
+// Manage Library Page 
 
 const addGameForm = document.getElementById('addGameForm');
 const libraryContainer = document.getElementById('libraryContainer');
@@ -34,11 +34,11 @@ async function loadLibrary() {
       gameEl.innerHTML = `
         <div class="library-item-title">${game.title}</div>
         <div class="library-item-detail">Genre: ${game.genre}</div>
-        <div class="library-item-detail">Hours Played: <span class="hours-display" data-id="${game.id}" data-hours="${game.hoursPlayed}">${game.hoursPlayed}</span> <button class="edit-hours-btn" data-id="${game.id}">✏️ Edit</button></div>
+        <div class="library-item-detail">Hours Played: <span class="hours-display" data-id="${game.id}" data-hours="${game.hoursPlayed}">${game.hoursPlayed}</span> <button class="edit-hours-btn" data-id="${game.id}"> Edit</button></div>
         <div class="library-item-detail">Price: $${game.price.toFixed(2)}</div>
         <div class="library-item-actions">
-          <button class="delete-btn" data-id="${game.id}">🗑️ Delete</button>
-          <a href="${game.buyLink}" target="_blank" class="btn btn-buy">🛒 Buy</a>
+          <button class="delete-btn" data-id="${game.id}">Delete</button>
+          <a href="${game.buyLink}" target="_blank" class="btn btn-buy">Buy</a>
         </div>
       `;
       libraryContainer.appendChild(gameEl);
