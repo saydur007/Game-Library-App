@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Gamepad2, LayoutDashboard, Library, PlusCircle } from 'lucide-react';
 import Dashboard from './views/Dashboard';
