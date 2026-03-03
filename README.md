@@ -1,56 +1,54 @@
-# Game Library Hub
+# GameVault - MERN Web Application
 
 ## Overview
-Game Library Hub is a simple web app for tracking a personal video game collection. It lets users add games, log hours played, and browse trending titles pulled from IGDB with quick buy links. The project demonstrates a MERN-style workflow with an Express backend, a JSON data store, and a multi-page frontend.
-
-## Future Extensions
-Plan on extending this project by adding a Mongo Database and also a proper front end library using REACT. Plan is to also add registartion and login for users where everyone can track their games. Also include include: search and filters, platform/genre tags, and richer IGDB data (covers, release dates, and ratings).
+GameVault is a medium-fidelity web application built using the MERN stack (MongoDB, Express, React, Node.js). Its purpose is to provide users with a sleek, modern dashboard to organize, manage, and track their personal video game library. The app goes beyond a simple list by providing library statistics (total games, total value, hours played) and recent addition previews.
+In the future, this concept could be extended seamlessly by incorporating external APIs (like IGDB or rawg.io) to fetch artwork, user authentication to support multiple separate accounts, and advanced sorting/filtering mechanisms.
 
 ## Documentation
+### Prerequisites
+- Node.js installed
+- MongoDB installed and running locally (`mongodb://127.0.0.1:27017`), or update the connection string in `backend/server.js`.
 
-### How to Run
-1. Install dependencies:
+### How to Run the Project
+This project is divided into two separate applications: the backend API and the frontend client.
+
+#### 1. Start the Backend API
+1. Open a terminal and navigate to the `backend` folder.
+2. Install the dependencies:
    ```bash
    npm install
    ```
-2. (Optional) Enable IGDB integration by adding a `.env` file in the project root:
-   ```env
-   IGDB_CLIENT_ID=your_client_id
-   IGDB_CLIENT_SECRET=your_client_secret
-   PORT=3000
-   ```
-3. Start the server:
+3. Start the server (it runs on port `8080` and will auto-seed the database if empty):
    ```bash
-   npm start
+   npm run start
    ```
-4. Open the app:
-   - Home: `http://localhost:3000/`
-   - My Library: `http://localhost:3000/manage.html`
-   - Trending: `http://localhost:3000/trending.html`
 
-### How to Use
-- **Home page**: Intro and navigation.
-- **My Library**:
-  - View your saved games.
-  - Add a game (title, genre, hours played, price, buy link).
-  - Edit hours played and delete games.
-- **Trending**:
-  - See IGDB trending games (if IGDB is configured).
-  - Add a trending game to your library.
-  - Filter between IGDB results and your local library.
+#### 2. Start the Frontend Application
+1. Open a new terminal and navigate to the `frontend` folder.
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the Vite React development server:
+   ```bash
+   npm run dev
+   ```
+4. Open your browser and navigate to the URL provided (typically `http://localhost:5173`).
 
-### REST API (Express)
-- `GET /api/games` — list all games in your library
-- `POST /api/games` — add a game
-- `DELETE /api/games/:id` — remove a game
-- `PUT /api/games/:id` — update hours played
-
-### Data Storage
-Local games are stored in `games.json` and read/written by the API.
+### How to Record the Video Assignment
+To record the short video (< 60s) of your working project as requested by the assignment parameters:
+1. Open the application in your browser (`http://localhost:5173`).
+2. On macOS, press `Cmd + Shift + 5` to open the screen recording tool.
+3. Select the portion of the screen containing the browser.
+4. Click "Record".
+5. Quickly demonstrate the 3 views: Dashboard, Library list, and Add/Edit Game form (Showcase all CRUD operations).
+6. Click the stop button on your menu bar when finished. The `.mov` file can be found on your desktop.
+7. Rename or convert it to `.mp4` if strictly required.
 
 ## Reflection
-This submission includes an Express server (`server.js`), REST endpoints in `routes/games.js`, IGDB integration in `routes/igdb.js`/`igdb.js`, and three HTML pages with separate JS/CSS for UI and interactions. 
+This submission successfully transitions a standard Node app into a fully decoupled MERN architecture. The frontend was entirely rebuilt using React and Vite to ensure a snappy single-page application experience. It implements three distinct web views managed by `react-router-dom`: 
+- **Dashboard (`/`)**: A read-only analytical view showcasing aggregation and recent items.
+- **Library (`/games`)**: The primary CRUD table to read, edit, or delete items.
+- **Game Form (`/add` or `/edit/:id`)**: The interactive entry point for inserting new documents or mutating existing ones.
 
-**Successes:** building a working CRUD flow (add, delete, update hours), connecting the frontend to the API, and integrating external data from IGDB for trending games.  
-**Challenges:** coordinating the IGDB auth flow and handling errors (token refresh, failed requests), and keeping the UI state consistent after updates. Those were handled with clear API responses and reloads after actions.
-
+The backend was refactored to use standard `mongoose` models and dynamically seeds initial test data upon booting, solving the "first-time run" cold start problem perfectly. A major success during this implementation was creating a customized CSS design system prioritizing "Visual Excellence" through a dark, glassmorphic aesthetic—ensuring the application meets the criteria for going "beyond the tutorials."
