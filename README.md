@@ -12,7 +12,7 @@ In the future, for Assignment 3 the project can include features such as the abi
 
 ### Prerequisites
 
-#### Option A — Run with Docker (Recommended)
+#### Option A — Run with Docker
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running
 
 #### Option B — Run Locally
@@ -21,7 +21,7 @@ In the future, for Assignment 3 the project can include features such as the abi
 
 ---
 
-### How to Run — Docker (Recommended)
+### How to Run — Docker 
 
 Docker handles everything automatically. No need to install Node.js, MongoDB, or start any services manually.
 
@@ -88,7 +88,7 @@ Open your browser and navigate to `http://localhost:5173`.
 
 ### What Was Built
 
-Game Library Hub is a fully decoupled MERN application consisting of three independently running services — a React/Vite frontend, an Express REST API backend, and a MongoDB database. The backend exposes a complete set of RESTful endpoints (GET, POST, PUT, DELETE) for managing the game library, as well as a separate route layer that proxies requests to the external IGDB API for live game data. The frontend consumes these endpoints through a centralized Axios API client and renders four distinct views managed by React Router.
+Game Library Hub is a fully stacked MERN application consisting of three independently running services — a React/Vite frontend, an Express REST API backend, and a MongoDB database. The backend exposes a complete set of RESTful endpoints (GET, POST, PUT, DELETE) for managing the game library, as well as a separate route layer that proxies requests to the external IGDB API for live game data. The frontend consumes these endpoints through a centralized Axios API client and renders four distinct views managed by React Router.
 
 The project is fully containerized with Docker and Docker Compose, allowing the entire stack to be launched with a single command on any machine without any manual setup.
 
