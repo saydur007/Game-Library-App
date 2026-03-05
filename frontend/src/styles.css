@@ -49,15 +49,27 @@ a {
   border-radius: 6px;
 }
 
+.top-nav nav a {
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.top-nav nav a:hover {
+  background: rgba(220, 38, 38, 0.15);
+  color: #fca5a5;
+  transform: translateY(-1px);
+}
+
 .top-nav nav a.active {
-  background: #4ea4ff;
-  color: #08121d;
+  background: #dc2626;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
 }
 
 .brand {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  font-family: fantasy;
   font-weight: 700;
 }
 

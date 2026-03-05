@@ -32,7 +32,7 @@ router.get('/:id', async (req, res) => {
 // POST - Add a new game to the library
 router.post('/', async (req, res) => {
   try {
-    const { title, genre, hoursPlayed, price, buyLink } = req.body;
+    const { title, genre, hoursPlayed, price, buyLink, coverUrl } = req.body;
 
     if (!title || !genre || price === undefined) {
       return res.status(400).json({
@@ -50,7 +50,8 @@ router.post('/', async (req, res) => {
       genre,
       hoursPlayed: hoursPlayed || 0,
       price,
-      buyLink: buyLink || '#'
+      buyLink: buyLink || '#',
+      coverUrl: coverUrl || ''
     });
 
     await newGame.save();

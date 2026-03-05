@@ -1,13 +1,20 @@
 import { useEffect, useMemo, useState } from 'react';
 import { addGame, getGames, getTrendingGames } from '../api';
 import AlertMessage from '../components/AlertMessage';
-import GameCard from '../components/GameCard';
+import './TrendingView.css';
+
+function igdbCoverUrl(cover) {
+  if (!cover?.url) return '';
+  return 'https:' + cover.url.replace('t_thumb', 't_cover_big');
+}
 
 function normalizeIgdbGame(game) {
   return {
     id: game.id,
     title: game.name || 'Unknown Game',
-    genre: Array.isArray(game.genres) ? game.genres.join(', ') : 'Unknown',
+    genre: Array.isArray(game.genres) ? game.genres.map(g => g.name || g).join(', ') : null,
+    cover: game.cover,
+    coverUrl: igdbCoverUrl(game.cover),
     hoursPlayed: 0,
     price: 29.99,
     buyLink: '#',
@@ -20,6 +27,7 @@ function TrendingView() {
   const [alert, setAlert] = useState(null);
   const [igdbGames, setIgdbGames] = useState([]);
   const [libraryGames, setLibraryGames] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   function showAlert(message, type) {
     setAlert({ message, type });
@@ -27,33 +35,30 @@ function TrendingView() {
   }
 
   async function loadData() {
+    setLoading(true);
     try {
       const [igdbResult, libraryResult] = await Promise.all([getTrendingGames(), getGames()]);
-
-      // API helpers now return raw data arrays/objects
-      const igdbData = Array.isArray(igdbResult) ? igdbResult : [];
-      const libraryData = Array.isArray(libraryResult) ? libraryResult : [];
-
-      setIgdbGames(igdbData.map(normalizeIgdbGame));
-      setLibraryGames(libraryData);
+      setIgdbGames(Array.isArray(igdbResult) ? igdbResult.map(normalizeIgdbGame) : []);
+      setLibraryGames(Array.isArray(libraryResult) ? libraryResult : []);
     } catch (error) {
       showAlert(error.message, 'error');
       setIgdbGames([]);
       setLibraryGames([]);
+    } finally {
+      setLoading(false);
     }
   }
 
   async function addToLibrary(game) {
     try {
-      const payload = {
+      const result = await addGame({
         title: game.title,
-        genre: game.genre,
-        hoursPlayed: game.hoursPlayed || 0,
+        genre: game.genre || 'Unknown',
+        hoursPlayed: 0,
         price: game.price || 29.99,
         buyLink: game.buyLink || '#',
-      };
-
-      const result = await addGame(payload);
+        coverUrl: game.coverUrl || '',
+      });
       showAlert(`${result.title} added to your library!`, 'success');
       loadData();
     } catch (error) {
@@ -62,67 +67,130 @@ function TrendingView() {
   }
 
   const titleSet = useMemo(
-    () => new Set(libraryGames.map((game) => String(game.title).toLowerCase())),
+    () => new Set(libraryGames.map(g => String(g.title).toLowerCase())),
     [libraryGames]
   );
 
   const visibleGames = useMemo(() => {
-    const withSource = [
-      ...igdbGames.map((game) => ({ ...game, source: 'igdb' })),
-      ...libraryGames.map((game) => ({ ...game, source: 'local' })),
-    ];
-
-    if (filter === 'trending') return withSource.filter((game) => game.source === 'igdb');
-    if (filter === 'library') return withSource.filter((game) => game.source === 'local');
-    return withSource;
+    const igdb = igdbGames.map(g => ({ ...g, source: 'igdb' }));
+    const local = libraryGames.map(g => ({ ...g, source: 'local' }));
+    if (filter === 'trending') return igdb;
+    if (filter === 'library') return local;
+    return [...igdb, ...local];
   }, [filter, igdbGames, libraryGames]);
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { loadData(); }, []);
+
+  const FILTERS = [
+    { key: 'all',      label: 'All Games' },
+    { key: 'trending', label: 'IGDB Trending' },
+    { key: 'library',  label: 'My Library' },
+  ];
 
   return (
-    <section>
-      <h1>Trending and New Games</h1>
-      <p className="muted">
-        Discover popular games from IGDB and add them to your personal library.
-      </p>
-      <AlertMessage alert={alert} />
+    <section className="trending-page">
 
-      <div className="filters">
-        <button
-          onClick={() => setFilter('all')}
-          className={filter === 'all' ? 'btn-primary' : 'btn-secondary'}
-        >
-          All Games
-        </button>
-        <button
-          onClick={() => setFilter('trending')}
-          className={filter === 'trending' ? 'btn-primary' : 'btn-secondary'}
-        >
-          IGDB Trending
-        </button>
-        <button
-          onClick={() => setFilter('library')}
-          className={filter === 'library' ? 'btn-primary' : 'btn-secondary'}
-        >
-          My Library
-        </button>
+      {/* Hero */}
+      <div className="trending-hero">
+        <h1 className="trending-hero-title">Trending Games</h1>
+        <p className="trending-hero-subtitle">
+          Top-rated titles from IGDB — add any to your personal library
+        </p>
+
+        {/* Filter tabs */}
+        <div className="trending-filters">
+          {FILTERS.map(f => (
+            <button
+              key={f.key}
+              className={`trending-filter-btn${filter === f.key ? ' active' : ''}`}
+              onClick={() => setFilter(f.key)}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {visibleGames.length === 0 ? (
-        <div className="empty-state">No games available right now.</div>
-      ) : (
-        <div className="game-grid">
-          {visibleGames.map((game) => (
-            <GameCard
-              key={`${game.source}-${game.id}`}
-              game={game}
-              source={game.source}
-              inLibrary={titleSet.has(String(game.title).toLowerCase())}
-              onAddToLibrary={addToLibrary}
-            />
+      <AlertMessage alert={alert} />
+
+      {/* Loading skeleton */}
+      {loading && (
+        <div className="trending-skeleton-grid">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div key={i} className="trending-skeleton-card" style={{ animationDelay: `${i * 0.05}s` }} />
           ))}
+        </div>
+      )}
+
+      {/* Empty state */}
+      {!loading && visibleGames.length === 0 && (
+        <div className="trending-empty">
+          <div className="trending-empty-icon">🎮</div>
+          <p>No games to show here.</p>
+        </div>
+      )}
+
+      {/* Count label */}
+      {!loading && visibleGames.length > 0 && (
+        <p className="trending-count-label">
+          <span className="trending-count">{visibleGames.length}</span> games
+        </p>
+      )}
+
+      {/* Poster grid */}
+      {!loading && visibleGames.length > 0 && (
+        <div className="trending-grid">
+          {visibleGames.map((game, i) => {
+            const inLibrary = titleSet.has(String(game.title).toLowerCase());
+            const isLocal = game.source === 'local';
+            return (
+              <div
+                key={`${game.source}-${game.id}`}
+                className="trending-card"
+                style={{ animationDelay: `${i * 0.04}s` }}
+              >
+                {/* Cover */}
+                {game.coverUrl
+                  ? <img src={game.coverUrl} alt={game.title} className="trending-card-cover" />
+                  : <div className="trending-card-no-cover"><span>🎮</span></div>
+                }
+
+                {/* Source badge */}
+                <div className={`trending-card-source ${isLocal ? 'source-local' : 'source-igdb'}`}>
+                  {isLocal ? 'Your Library' : 'IGDB'}
+                </div>
+
+                {/* In-library badge (only for IGDB cards already saved) */}
+                {!isLocal && inLibrary && (
+                  <div className="trending-card-in-library">✓ Saved</div>
+                )}
+
+                {/* Rating */}
+                {game.rating && (
+                  <div className="trending-card-rating">★ {Math.round(game.rating)}</div>
+                )}
+
+                {/* Bottom overlay */}
+                <div className="trending-card-overlay">
+                  <div className="trending-card-title">{game.title}</div>
+                  {game.genre && <div className="trending-card-genre">{game.genre}</div>}
+                </div>
+
+                {/* Hover action — only for unsaved IGDB games */}
+                {!isLocal && !inLibrary && (
+                  <div className="trending-card-hover">
+                    <button
+                      className="trending-card-add-btn"
+                      onClick={() => addToLibrary(game)}
+                    >
+                      + Add to Library
+                    </button>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
     </section>

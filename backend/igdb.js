@@ -39,7 +39,7 @@ async function getAccessToken() {
 }
 
 // Fetch games from IGDB
-async function fetchGamesFromIGDB(query = 'fields name, rating, genres, platforms, release_dates; limit 10;') {
+async function fetchGamesFromIGDB(query = 'fields name, rating, genres.name, platforms, release_dates, cover.url; limit 10;') {
   try {
     const token = await getAccessToken();
 
@@ -61,7 +61,7 @@ async function fetchGamesFromIGDB(query = 'fields name, rating, genres, platform
 // Fetch trending games (sorted by rating)
 async function getTrendingGames() {
   const query = `
-    fields name, rating, genres, platforms, release_dates;
+    fields name, rating, genres.name, platforms, release_dates, cover.url;
     where rating > 80;
     sort rating desc;
     limit 20;
@@ -72,7 +72,7 @@ async function getTrendingGames() {
 // Search games by name
 async function searchGamesByName(name) {
   const query = `
-    fields name, rating, genres, platforms, release_dates;
+    fields name, rating, genres.name, platforms, release_dates, cover.url;
     search "${name}";
     limit 10;
   `;
@@ -82,7 +82,7 @@ async function searchGamesByName(name) {
 // Fetch popular games by genre
 async function getGamesByGenre(genreId) {
   const query = `
-    fields name, rating, genres, platforms, release_dates;
+    fields name, rating, genres.name, platforms, release_dates, cover.url;
     where genres = [${genreId}];
     sort rating desc;
     limit 15;

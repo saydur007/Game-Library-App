@@ -13,6 +13,7 @@ function Navbar() {
         </NavLink>
         <NavLink to="/library">My Library</NavLink>
         <NavLink to="/trending">Trending</NavLink>
+        <NavLink to="/search">Search</NavLink>
       </nav>
     </header>
   );
