@@ -117,10 +117,9 @@ function SearchView() {
         </div>
       )}
 
-      {/* Initial state */}
+      {/* Initial state */} 
       {!searched && !loading && (
         <div className="search-initial-state">
-          <div className="search-initial-icon">🎮</div>
           <p>Start typing to discover games from the IGDB database</p>
           <div className="search-suggestions">
             {['Elden Ring', 'The Witcher', 'Cyberpunk', 'Hollow Knight'].map(s => (

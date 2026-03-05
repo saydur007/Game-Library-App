@@ -4,7 +4,7 @@
 
 Game Library Hub, is a full-stack web application developed using the MERN technology stack. The purpose of the application is to assist users in effectively managing their personal video game library. The application offers users an attractive, clean, and modern dashboard where they can manage their games, view statistics such as the total hours played or the total library value, or use the Internet Game Database API for searching new games. Additionally, users can view trending games.
 
-In the future, the project can include features such as the ability for users to have multiple accounts, better filtering options, game recommendations using the IGDB API and more features for managing games.
+In the future, for Assignemt 3 the project can include features such as the ability for users to have multiple accounts, a full functioning signup and login page, better filtering options, game recommendations using the IGDB API and more features for managing games.
 
 ---
 
@@ -104,4 +104,4 @@ The project is fully containerized with Docker and Docker Compose, allowing the 
 
 **Team Collaboration** — Group collaboration was central to the success of this project. Dividing responsibilities across frontend, backend, and API integration allowed work to happen in parallel without blocking each other. Regular communication around API outputs and what endpoints exist, what they return, what the frontend expects — kept integration smooth. Git was used throughout to manage contributions, and having a shared understanding of the project structure from the start made merging work straightforward.
 
-**End Result** — The final product is a genuinely functional and visually impressive application. The dark gradient design system gives a unqiue touch. Docker containerization makes the entire stack fully portable. The IGDB integration brings real, live data into the application, making the Search and Trending views feel like an amazing feature. Overall, the project came together exactly as envisioned and exceeded the initial scope in both functionality and visual quality.
+**End Result** — The final product is a genuinely functional and visually impressive application. The dark gradient design system gives a unqiue touch. Docker containerization makes the entire stack fully portable. The IGDB integration brings real, live data into the application, making the Search and Trending views feel like an amazing feature. Overall, the project came together exactly as envisioned and exceeded the initial scope in both functionality and visual quality and goal would be to enhance it further for the next assignment.
