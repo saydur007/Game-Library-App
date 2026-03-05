@@ -15,7 +15,6 @@ const PORT = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/gamelibrary')
   .then(async () => {
     console.log('Connected to MongoDB');

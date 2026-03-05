@@ -1,10 +1,9 @@
-/* ── Trending Page ───────────────────────────────────── */
+
 
 .trending-page {
   padding-bottom: 4rem;
 }
 
-/* ── Hero ────────────────────────────────────────────── */
 
 .trending-hero {
   text-align: center;
@@ -29,7 +28,6 @@
   margin-bottom: 2rem;
 }
 
-/* ── Filter tabs ─────────────────────────────────────── */
 
 .trending-filters {
   display: flex;
@@ -66,7 +64,6 @@
   box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
 }
 
-/* ── Count label ─────────────────────────────────────── */
 
 .trending-count-label {
   color: #64748b;
@@ -79,7 +76,6 @@
   font-weight: 600;
 }
 
-/* ── Skeleton ────────────────────────────────────────── */
 
 .trending-skeleton-grid {
   display: grid;
@@ -125,7 +121,6 @@
   color: #94a3b8;
 }
 
-/* ── Poster grid ─────────────────────────────────────── */
 
 .trending-grid {
   display: grid;
@@ -133,7 +128,6 @@
   gap: 1.25rem;
 }
 
-/* ── Poster card ─────────────────────────────────────── */
 
 .trending-card {
   position: relative;

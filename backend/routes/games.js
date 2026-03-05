@@ -3,7 +3,6 @@ const Game = require('../models/Game');
 
 const router = express.Router();
 
-// ===== REST API ENDPOINTS =====
 
 // GET - Retrieve all games
 router.get('/', async (req, res) => {

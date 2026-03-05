@@ -185,7 +185,7 @@ function SearchView() {
                   </div>
                 )}
 
-                {/* Bottom overlay — always visible */}
+                {/* Bottom overlay*/}
                 <div className="search-result-overlay">
                   <div className="search-result-title">{game.title}</div>
                   {game.genre && <div className="search-result-genre">{game.genre}</div>}

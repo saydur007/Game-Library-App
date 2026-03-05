@@ -79,7 +79,6 @@ function TrendingView() {
     return [...igdb, ...local];
   }, [filter, igdbGames, libraryGames]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { loadData(); }, []);
 
   const FILTERS = [
@@ -161,7 +160,7 @@ function TrendingView() {
                   {isLocal ? 'Your Library' : 'IGDB'}
                 </div>
 
-                {/* In-library badge (only for IGDB cards already saved) */}
+                {/* In-library badge */}
                 {!isLocal && inLibrary && (
                   <div className="trending-card-in-library">✓ Saved</div>
                 )}

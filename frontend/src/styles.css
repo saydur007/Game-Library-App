@@ -1,14 +1,7 @@
 :root {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #f4f7fb;
-  /* base gradient as fallback while image loads */
   background-color: #0f1722;
-}
-
-body {
-  /* use the provided background.png from public folder */
-  background: url('/images/Background.png') no-repeat center center fixed;
-  background-size: cover;
 }
 
 * {
@@ -18,6 +11,8 @@ body {
 body {
   margin: 0;
   min-height: 100vh;
+  background: url('/images/Background.png') no-repeat center center fixed;
+  background-size: cover;
 }
 
 a {
@@ -47,9 +42,6 @@ a {
 .top-nav nav a {
   padding: 0.45rem 0.8rem;
   border-radius: 6px;
-}
-
-.top-nav nav a {
   transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
 
@@ -91,12 +83,6 @@ a {
   background: rgba(13, 23, 35, 0.7);
 }
 
-.hero-actions {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-}
-
 .feature-grid {
   margin-top: 1rem;
   display: grid;
@@ -116,79 +102,6 @@ a {
   height: 36px;
 }
 
-.split-layout {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1rem;
-}
-
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 0.9rem;
-}
-
-.game-card,
-.game-form,
-.empty-state {
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 10px;
-  padding: 1rem;
-  background: rgba(13, 23, 35, 0.7);
-}
-
-.game-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-
-.badge {
-  font-size: 0.75rem;
-  padding: 0.2rem 0.45rem;
-  border-radius: 999px;
-}
-
-.badge-igdb {
-  background: rgba(77, 208, 225, 0.18);
-  color: #79ecff;
-}
-
-.badge-local {
-  background: rgba(122, 231, 112, 0.18);
-  color: #9ffe93;
-}
-
-.price {
-  font-weight: 700;
-}
-
-.card-actions,
-.filters {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.game-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.game-form label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  font-size: 0.9rem;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-
 input {
   padding: 0.55rem;
   border-radius: 6px;
@@ -197,30 +110,12 @@ input {
   color: #f4f7fb;
 }
 
-button,
-.btn-primary,
-.btn-secondary,
-.btn-danger {
+button {
   border: none;
   border-radius: 6px;
   padding: 0.5rem 0.85rem;
   cursor: pointer;
   font-weight: 600;
-}
-
-.btn-primary {
-  background: #4ea4ff;
-  color: #061323;
-}
-
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.12);
-  color: #f4f7fb;
-}
-
-.btn-danger {
-  background: #ff6a66;
-  color: #2b0200;
 }
 
 .alert {
@@ -237,15 +132,7 @@ button,
   background: rgba(255, 106, 102, 0.2);
 }
 
-.muted {
-  color: #bfd4e8;
-}
-
 @media (max-width: 900px) {
-  .split-layout {
-    grid-template-columns: 1fr;
-  }
-
   .top-nav {
     flex-direction: column;
     gap: 0.65rem;

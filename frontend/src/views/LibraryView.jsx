@@ -19,11 +19,9 @@ function LibraryView() {
   const [sortBy, setSortBy]         = useState('dateAdded');
   const [filterText, setFilterText] = useState('');
 
-  // inline hours editing
   const [editingId, setEditingId]       = useState(null);
   const [editingHours, setEditingHours] = useState('');
 
-  // IGDB search panel
   const [searchQuery,   setSearchQuery]   = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
