@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # GameVault - MERN Web Application
 
 ## Overview
@@ -52,3 +53,6 @@ This submission successfully transitions a standard Node app into a fully decoup
 - **Game Form (`/add` or `/edit/:id`)**: The interactive entry point for inserting new documents or mutating existing ones.
 
 The backend was refactored to use standard `mongoose` models and dynamically seeds initial test data upon booting, solving the "first-time run" cold start problem perfectly. A major success during this implementation was creating a customized CSS design system prioritizing "Visual Excellence" through a dark, glassmorphic aesthetic—ensuring the application meets the criteria for going "beyond the tutorials."
+=======
+Do, npm init and just do npm start to run locally.
+>>>>>>> 30f4b00 (Add instructions to run the project locally)
