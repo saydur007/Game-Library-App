@@ -1,0 +1,307 @@
+
+
+.trending-page {
+  padding-bottom: 4rem;
+}
+
+
+.trending-hero {
+  text-align: center;
+  padding: 3.5rem 1rem 2rem;
+}
+
+.trending-hero-title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-family: fantasy;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 55%, #b91c1c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.6rem;
+}
+
+.trending-hero-subtitle {
+  color: #94a3b8;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+
+.trending-filters {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.trending-filter-btn {
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: 50px;
+  color: #94a3b8;
+  padding: 0.45rem 1.2rem;
+  font-size: 0.88rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.trending-filter-btn:hover {
+  background: rgba(220, 38, 38, 0.15);
+  border-color: rgba(220, 38, 38, 0.4);
+  color: #fca5a5;
+  transform: translateY(-2px);
+}
+
+.trending-filter-btn.active {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+}
+
+
+.trending-count-label {
+  color: #64748b;
+  font-size: 0.88rem;
+  margin-bottom: 1.25rem;
+}
+
+.trending-count {
+  color: #fca5a5;
+  font-weight: 600;
+}
+
+
+.trending-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.trending-skeleton-card {
+  aspect-ratio: 3/4;
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 33, 52, 0.8) 25%,
+    rgba(45, 48, 72, 0.9) 50%,
+    rgba(30, 33, 52, 0.8) 75%
+  );
+  background-size: 200% 100%;
+  animation: trending-shimmer 1.4s infinite;
+}
+
+@keyframes trending-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Empty state ─────────────────────────────────────── */
+
+.trending-empty {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: #64748b;
+}
+
+.trending-empty-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.4;
+}
+
+.trending-empty p {
+  font-size: 1.05rem;
+  color: #94a3b8;
+}
+
+
+.trending-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.25rem;
+}
+
+
+.trending-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: rgba(26, 29, 45, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  cursor: default;
+  animation: trending-card-in 0.4s ease both;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+@keyframes trending-card-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+.trending-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 22px 50px rgba(220, 38, 38, 0.35);
+  border-color: rgba(220, 38, 38, 0.5);
+  z-index: 2;
+}
+
+.trending-card-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.trending-card-no-cover {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0f111a 0%, #1a1d2d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  opacity: 0.4;
+}
+
+/* Bottom overlay — always visible */
+.trending-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 0.75rem 0.75rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 65%, transparent 100%);
+}
+
+.trending-card-title {
+  font-size: 0.82rem;
+  font-family: fantasy;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.trending-card-genre {
+  font-size: 0.7rem;
+  color: #fca5a5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Top-left source badge */
+.trending-card-source {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  letter-spacing: 0.03em;
+}
+
+.source-igdb {
+  background: rgba(220, 38, 38, 0.8);
+  color: #fff;
+}
+
+.source-local {
+  background: rgba(15, 23, 42, 0.75);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* "✓ Saved" badge */
+.trending-card-in-library {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(16, 185, 129, 0.85);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.02em;
+}
+
+/* Rating pill */
+.trending-card-rating {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  color: #fbbf24;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 20px;
+  border: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+/* When both saved badge and rating exist, offset rating down */
+.trending-card-in-library ~ .trending-card-rating {
+  top: 34px;
+}
+
+/* Hover action overlay */
+.trending-card-hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.trending-card:hover .trending-card-hover {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.trending-card-add-btn {
+  background: #dc2626;
+  border: none;
+  border-radius: 50px;
+  padding: 0.6rem 1.3rem;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.45);
+  transform: scale(0.92);
+  transition: background 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.trending-card:hover .trending-card-add-btn {
+  transform: scale(1);
+}
+
+.trending-card-add-btn:hover {
+  background: #b91c1c;
+  transform: scale(1.08) !important;
+  box-shadow: 0 12px 32px rgba(220, 38, 38, 0.6);
+}

@@ -27,7 +27,6 @@ function saveGames() {
 
 loadGames();
 
-// ===== REST API ENDPOINTS =====
 
 // GET - Retrieve all games
 router.get('/', (req, res) => {
