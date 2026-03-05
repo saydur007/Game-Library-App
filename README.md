@@ -4,7 +4,7 @@
 
 Game Library Hub, is a full-stack web application developed using the MERN technology stack. The purpose of the application is to assist users in effectively managing their personal video game library. The application offers users an attractive, clean, and modern dashboard where they can manage their games, view statistics such as the total hours played or the total library value, or use the Internet Game Database API for searching new games. Additionally, users can view trending games.
 
-In the future, for Assignemt 3 the project can include features such as the ability for users to have multiple accounts, a full functioning signup and login page, better filtering options, game recommendations using the IGDB API and more features for managing games.
+In the future, for Assignment 3 the project can include features such as the ability for users to have multiple accounts, a full functioning signup and login page, better filtering options, game recommendations using the IGDB API and more features for managing games.
 
 ---
 
