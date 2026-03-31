@@ -19,7 +19,8 @@ export function SocketProvider({ children }) {
       return;
     }
 
-    const socket = io('http://localhost:8080', {
+    const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:8080';
+    const socket = io(socketUrl, {
       auth: { token }
     });
 
