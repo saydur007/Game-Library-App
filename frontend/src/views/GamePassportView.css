@@ -1,0 +1,330 @@
+/* ── Game Passport View ───────────────────────────────────── */
+
+.passport-unassigned-hint {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin: 0 0 0.75rem;
+  font-style: italic;
+}
+
+.passport-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* ── Globe wrapper ─────────────────────────────────────────── */
+
+.passport-globe-wrap {
+  background: #070e1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.passport-globe-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 1.25rem 1.5rem;
+  pointer-events: none;
+}
+
+.passport-globe-title h2 {
+  font-family: fantasy;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+.passport-globe-subtitle {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0.25rem 0 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ── Sidebar ───────────────────────────────────────────────── */
+
+.passport-sidebar {
+  background: rgba(13, 23, 35, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.25rem;
+  min-height: 400px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Detail panel (after clicking a country pin) ────────────── */
+
+.passport-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.passport-back-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f4f7fb;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.825rem;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+  width: fit-content;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.passport-back-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.passport-country-name {
+  font-family: fantasy;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 55%, #b91c1c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.passport-count {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin: 0 0 1rem;
+}
+
+.passport-game-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.passport-game-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.passport-game-item:hover {
+  background: rgba(220, 38, 38, 0.07);
+  border-color: rgba(220, 38, 38, 0.2);
+}
+
+.passport-cover {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.passport-cover-placeholder {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background: rgba(220, 38, 38, 0.15);
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+/* ── Overview panel (default state) ────────────────────────── */
+
+.passport-overview {
+  display: flex;
+  flex-direction: column;
+}
+
+.passport-overview h3 {
+  font-family: fantasy;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0 0 1rem;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 55%, #b91c1c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.passport-unassigned-section {
+  margin-top: 0.5rem;
+}
+
+.passport-unassigned-title {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.unassigned-count {
+  background: rgba(220, 38, 38, 0.2);
+  color: #fca5a5;
+  border-radius: 20px;
+  padding: 1px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.6;
+  display: inline-block;
+}
+
+.passport-unassigned-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(220, 38, 38, 0.3) transparent;
+}
+
+.passport-unassigned-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.passport-unassigned-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.passport-unassigned-list::-webkit-scrollbar-thumb {
+  background: rgba(220, 38, 38, 0.3);
+  border-radius: 2px;
+}
+
+.passport-unassigned-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 6px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.passport-unassigned-item:hover {
+  background: rgba(220, 38, 38, 0.05);
+  border-color: rgba(220, 38, 38, 0.15);
+}
+
+.unassigned-game-title {
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+.passport-unassigned-item select {
+  width: 100%;
+  background: #0f1a26;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  color: #f4f7fb;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.8rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  appearance: auto;
+}
+
+.passport-unassigned-item select:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
+}
+
+.passport-unassigned-item select option {
+  background: #0f1a26;
+  color: #f4f7fb;
+}
+
+/* ── Status messages ─────────────────────────────────────── */
+
+.passport-all-pinned {
+  color: #4ade80;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+.passport-empty {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .passport-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .passport-globe-wrap {
+    border-radius: 12px;
+  }
+
+  .passport-sidebar {
+    border-radius: 12px;
+    min-height: unset;
+  }
+}
+
+@media (max-width: 600px) {
+  .passport-globe-title {
+    padding: 0.875rem 1rem;
+  }
+
+  .passport-globe-title h2 {
+    font-size: 1.2rem;
+  }
+
+  .passport-globe-subtitle {
+    font-size: 0.75rem;
+  }
+}

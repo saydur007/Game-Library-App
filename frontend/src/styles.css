@@ -139,3 +139,27 @@ button {
     align-items: flex-start;
   }
 }
+
+.nav-logout-btn {
+  background: transparent;
+  border: 1px solid rgba(220, 38, 38, 0.5);
+  color: #fca5a5;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.nav-logout-btn:hover {
+  background: rgba(220, 38, 38, 0.2);
+  transform: translateY(-1px);
+}
+
+.nav-username {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-style: italic;
+  font-size: 0.875rem;
+}

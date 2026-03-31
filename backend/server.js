@@ -1,4 +1,6 @@
 const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -6,6 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const Game = require('./models/Game');
 const gamesRouter = require('./routes/games');
+const { initChat } = require('./socket/chat');
 
 dotenv.config();
 
@@ -35,9 +38,19 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/gamelibra
     console.error('MongoDB connection error:', err);
   });
 
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/messages', require('./routes/messages'));
 app.use('/api/games', gamesRouter);
 app.use('/api/igdb', require('./routes/igdb'));
+app.use('/api/tierlist', require('./routes/tierlist'));
+app.use('/api/steam',    require('./routes/steam'));
 
-app.listen(PORT, () => {
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: { origin: '*', methods: ['GET', 'POST'] }
+});
+initChat(io);
+
+server.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });

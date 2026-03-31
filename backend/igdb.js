@@ -1,5 +1,6 @@
 // IGDB API Handler
 const axios = require('axios');
+const { getCountryByNumericCode } = require('./utils/isoCountryMap');
 
 // Store token and expiration time
 let accessToken = null;
@@ -10,6 +11,14 @@ const IGDB_CLIENT_ID = process.env.IGDB_CLIENT_ID;
 const IGDB_CLIENT_SECRET = process.env.IGDB_CLIENT_SECRET;
 const IGDB_AUTH_URL = 'https://id.twitch.tv/oauth2/token';
 const IGDB_API_URL = 'https://api.igdb.com/v4';
+
+function extractDeveloperCountry(involvedCompanies = []) {
+  const dev = involvedCompanies.find(ic => ic.developer);
+  const code = dev?.company?.country;
+  if (!code) return null;
+  const country = getCountryByNumericCode(code);
+  return country ? country.alpha2 : null;
+}
 
 // Get or refresh access token
 async function getAccessToken() {
@@ -61,22 +70,32 @@ async function fetchGamesFromIGDB(query = 'fields name, rating, genres.name, pla
 // Fetch trending games (sorted by rating)
 async function getTrendingGames() {
   const query = `
-    fields name, rating, genres.name, platforms, release_dates, cover.url;
+    fields name, rating, genres.name, platforms, release_dates, cover.url,
+           involved_companies.developer, involved_companies.company.country;
     where rating > 80;
     sort rating desc;
     limit 20;
   `;
-  return fetchGamesFromIGDB(query);
+  const games = await fetchGamesFromIGDB(query);
+  return games.map(g => ({
+    ...g,
+    countryCode: extractDeveloperCountry(g.involved_companies)
+  }));
 }
 
 // Search games by name
 async function searchGamesByName(name) {
   const query = `
-    fields name, rating, genres.name, platforms, release_dates, cover.url;
+    fields name, rating, genres.name, platforms, release_dates, cover.url,
+           involved_companies.developer, involved_companies.company.country;
     search "${name}";
     limit 10;
   `;
-  return fetchGamesFromIGDB(query);
+  const games = await fetchGamesFromIGDB(query);
+  return games.map(g => ({
+    ...g,
+    countryCode: extractDeveloperCountry(g.involved_companies)
+  }));
 }
 
 // Fetch popular games by genre
@@ -95,5 +114,6 @@ module.exports = {
   fetchGamesFromIGDB,
   getTrendingGames,
   searchGamesByName,
-  getGamesByGenre
+  getGamesByGenre,
+  extractDeveloperCountry
 };

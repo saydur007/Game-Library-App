@@ -4,6 +4,12 @@ const api = axios.create({
     baseURL: 'http://localhost:8080/api',
 });
 
+// Re-attach token on module load (handles page refresh)
+const storedToken = localStorage.getItem('token');
+if (storedToken) {
+  api.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
+}
+
 async function unwrap(promise) {
     const res = await promise;
     if (res && res.data) {
@@ -11,6 +17,17 @@ async function unwrap(promise) {
     }
     return res;
 }
+
+api.interceptors.response.use(
+  res => res,
+  err => {
+    if (err.response?.status === 401) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
+    return Promise.reject(err);
+  }
+);
 
 export function getGames() {
     return unwrap(api.get('/games'));
@@ -46,3 +63,23 @@ export function getGamesByGenre(genreId) {
 }
 
 export default api;
+
+// --- Auth ---
+export function register(payload)  { return unwrap(api.post('/auth/register', payload)); }
+export function login(payload)     { return unwrap(api.post('/auth/login', payload)); }
+export function getMe()            { return unwrap(api.get('/auth/me')); }
+
+// --- Messages ---
+export function getUsers()                { return unwrap(api.get('/messages/users')); }
+export function getConversation(userId)   { return unwrap(api.get(`/messages/${userId}`)); }
+
+// --- Tier List ---
+export function getTierList()             { return unwrap(api.get('/tierlist')); }
+export function saveTierList(tiers)       { return unwrap(api.put('/tierlist', { tiers })); }
+
+// --- Steam ---
+export function connectSteam(steamId)     { return unwrap(api.post('/steam/connect', { steamId })); }
+export function getSteamLibrary()         { return unwrap(api.get('/steam/library')); }
+
+// --- Game with country ---
+export function editGame(id, payload)     { return unwrap(api.put(`/games/${id}`, payload)); }
