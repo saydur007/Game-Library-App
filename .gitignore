@@ -5,3 +5,7 @@ node_modules/
 npm-debug.log*
 .vscode/
 .idea/
+
+# Claude internals
+CLAUDE.md
+docs/tasks/

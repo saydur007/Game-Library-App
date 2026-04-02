@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { addGame, getGames, getTrendingGames } from '../api';
 import AlertMessage from '../components/AlertMessage';
+import { useAuth } from '../context/AuthContext';
 import './TrendingView.css';
 
 function igdbCoverUrl(cover) {
@@ -23,6 +24,7 @@ function normalizeIgdbGame(game) {
 }
 
 function TrendingView() {
+  const { user } = useAuth();
   const [filter, setFilter] = useState('all');
   const [alert, setAlert] = useState(null);
   const [igdbGames, setIgdbGames] = useState([]);
@@ -37,9 +39,15 @@ function TrendingView() {
   async function loadData() {
     setLoading(true);
     try {
-      const [igdbResult, libraryResult] = await Promise.all([getTrendingGames(), getGames()]);
+      const igdbResult = await getTrendingGames();
       setIgdbGames(Array.isArray(igdbResult) ? igdbResult.map(normalizeIgdbGame) : []);
-      setLibraryGames(Array.isArray(libraryResult) ? libraryResult : []);
+
+      if (user) {
+        const libraryResult = await getGames();
+        setLibraryGames(Array.isArray(libraryResult) ? libraryResult : []);
+      } else {
+        setLibraryGames([]);
+      }
     } catch (error) {
       showAlert(error.message, 'error');
       setIgdbGames([]);
@@ -84,7 +92,7 @@ function TrendingView() {
   const FILTERS = [
     { key: 'all',      label: 'All Games' },
     { key: 'trending', label: 'IGDB Trending' },
-    { key: 'library',  label: 'My Library' },
+    ...(user ? [{ key: 'library', label: 'My Library' }] : []),
   ];
 
   return (
@@ -176,8 +184,8 @@ function TrendingView() {
                   {game.genre && <div className="trending-card-genre">{game.genre}</div>}
                 </div>
 
-                {/* Hover action — only for unsaved IGDB games */}
-                {!isLocal && !inLibrary && (
+                {/* Hover action — only for unsaved IGDB games and logged-in users */}
+                {user && !isLocal && !inLibrary && (
                   <div className="trending-card-hover">
                     <button
                       className="trending-card-add-btn"
