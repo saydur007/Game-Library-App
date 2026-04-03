@@ -14,6 +14,7 @@ import ChatView from './views/ChatView';
 import GamePassportView from './views/GamePassportView';
 import TierListView from './views/TierListView';
 import ProfileView from './views/ProfileView';
+import MoodView from './views/MoodView';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
 
               {/* Protected */}
               <Route path="/library"  element={<ProtectedRoute><LibraryView /></ProtectedRoute>} />
+              <Route path="/mood"     element={<ProtectedRoute><MoodView /></ProtectedRoute>} />
               <Route path="/chat"     element={<ProtectedRoute><ChatView /></ProtectedRoute>} />
               <Route path="/passport" element={<ProtectedRoute><GamePassportView /></ProtectedRoute>} />
               <Route path="/tierlist" element={<ProtectedRoute><TierListView /></ProtectedRoute>} />

@@ -9,6 +9,7 @@ const gameSchema = new mongoose.Schema({
   buyLink:         { type: String, default: '#' },
   coverUrl:        { type: String, default: '' },
   countryOfOrigin: { type: String, default: null },
+  embedding:       { type: [Number], default: null },
   userId:          { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
   dateAdded:       { type: Date, default: Date.now }
 });

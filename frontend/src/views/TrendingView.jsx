@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { addGame, getGames, getTrendingGames } from '../api';
 import AlertMessage from '../components/AlertMessage';
 import { useAuth } from '../context/AuthContext';
+import GameOverviewPanel from './GameOverviewPanel';
 import './TrendingView.css';
 
 function igdbCoverUrl(cover) {
@@ -30,6 +31,7 @@ function TrendingView() {
   const [igdbGames, setIgdbGames] = useState([]);
   const [libraryGames, setLibraryGames] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [overviewGame, setOverviewGame] = useState(null);
 
   function showAlert(message, type) {
     setAlert({ message, type });
@@ -184,14 +186,22 @@ function TrendingView() {
                   {game.genre && <div className="trending-card-genre">{game.genre}</div>}
                 </div>
 
-                {/* Hover action — only for unsaved IGDB games and logged-in users */}
-                {user && !isLocal && !inLibrary && (
+                {/* Hover actions — only for IGDB games and logged-in users */}
+                {user && !isLocal && (
                   <div className="trending-card-hover">
+                    {!inLibrary && (
+                      <button
+                        className="trending-card-add-btn"
+                        onClick={() => addToLibrary(game)}
+                      >
+                        + Add to Library
+                      </button>
+                    )}
                     <button
-                      className="trending-card-add-btn"
-                      onClick={() => addToLibrary(game)}
+                      className="trending-card-overview-btn"
+                      onClick={() => setOverviewGame(game)}
                     >
-                      + Add to Library
+                      ✦ Overview
                     </button>
                   </div>
                 )}
@@ -199,6 +209,15 @@ function TrendingView() {
             );
           })}
         </div>
+      )}
+      {overviewGame && (
+        <GameOverviewPanel
+          game={overviewGame}
+          library={libraryGames}
+          inLibrary={titleSet.has(String(overviewGame.title).toLowerCase())}
+          onAdd={addToLibrary}
+          onClose={() => setOverviewGame(null)}
+        />
       )}
     </section>
   );

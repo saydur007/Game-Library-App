@@ -24,6 +24,7 @@ function Navbar() {
         {user ? (
           <>
             <NavLink to="/library">My Library</NavLink>
+            <NavLink to="/mood">Mood</NavLink>
             <NavLink to="/passport">Passport</NavLink>
             <NavLink to="/tierlist">Tier List</NavLink>
             <NavLink to="/chat">Chat</NavLink>
