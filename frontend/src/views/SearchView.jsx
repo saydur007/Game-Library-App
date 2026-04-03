@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { addGame, getGames, searchIgdb } from '../api';
 import AlertMessage from '../components/AlertMessage';
+import { useAuth } from '../context/AuthContext';
+import GameOverviewPanel from './GameOverviewPanel';
 import './SearchView.css';
 
 function igdbCoverUrl(cover) {
@@ -22,12 +24,14 @@ function normalizeIgdbGame(game) {
 }
 
 function SearchView() {
+  const { user } = useAuth();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [libraryGames, setLibraryGames] = useState([]);
   const [alert, setAlert] = useState(null);
   const [searched, setSearched] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [overviewGame, setOverviewGame] = useState(null);
 
   function showAlert(message, type) {
     setAlert({ message, type });
@@ -191,20 +195,38 @@ function SearchView() {
                 </div>
 
                 {/* Hover action */}
-                {!inLibrary && (
-                  <div className="search-result-hover">
+                <div className="search-result-hover">
+                  {!inLibrary && (
                     <button
                       className="search-result-add-btn"
                       onClick={() => addToLibrary(game)}
                     >
                       + Add to Library
                     </button>
-                  </div>
-                )}
+                  )}
+                  {user && (
+                    <button
+                      className="search-result-overview-btn"
+                      onClick={() => setOverviewGame(game)}
+                    >
+                      ✦ Overview
+                    </button>
+                  )}
+                </div>
               </div>
             );
           })}
         </div>
+      )}
+
+      {overviewGame && (
+        <GameOverviewPanel
+          game={overviewGame}
+          library={libraryGames}
+          inLibrary={libraryTitles.has(String(overviewGame.title).toLowerCase())}
+          onAdd={addToLibrary}
+          onClose={() => setOverviewGame(null)}
+        />
       )}
     </section>
   );
