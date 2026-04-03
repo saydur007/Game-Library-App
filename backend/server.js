@@ -44,6 +44,8 @@ app.use('/api/games', gamesRouter);
 app.use('/api/igdb', require('./routes/igdb'));
 app.use('/api/tierlist', require('./routes/tierlist'));
 app.use('/api/steam',    require('./routes/steam'));
+app.use('/api/games',   require('./routes/similar'));
+app.use('/api/mood',    require('./routes/mood'));
 
 const server = http.createServer(app);
 const io = new Server(server, {

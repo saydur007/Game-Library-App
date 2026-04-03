@@ -83,3 +83,10 @@ export function getSteamLibrary()         { return unwrap(api.get('/steam/librar
 
 // --- Game with country ---
 export function editGame(id, payload)     { return unwrap(api.put(`/games/${id}`, payload)); }
+
+// --- AI Similarity ---
+export function getSimilarGames(gameId)                      { return unwrap(api.get(`/games/${gameId}/similar`)); }
+export function explainSimilarity(gameId, similarGames)      { return unwrap(api.post(`/games/${gameId}/explain`, { similarGames })); }
+export function getGameOverview(trendingGame, library)       { return unwrap(api.post('/games/overview', { trendingGame, library })); }
+export function getMoodMatches(mood)                         { return unwrap(api.post('/mood', { mood })); }
+export function getGlobalMoodMatches(mood)                   { return unwrap(api.post('/mood/global', { mood })); }

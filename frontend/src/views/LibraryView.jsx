@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { addGame, editHours, getGames, removeGame, searchIgdb } from '../api';
 import AlertMessage from '../components/AlertMessage';
+import SimilarGamesPanel from './SimilarGamesPanel';
 import './LibraryView.css';
 
 function igdbCoverUrl(cover) {
@@ -21,6 +22,7 @@ function LibraryView() {
 
   const [editingId, setEditingId]       = useState(null);
   const [editingHours, setEditingHours] = useState('');
+  const [similarGame, setSimilarGame]   = useState(null);
 
   const [searchQuery,   setSearchQuery]   = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -228,11 +230,11 @@ function LibraryView() {
             </div>
           ) : (
             <div className="library-list">
-              {displayedGames.map((game) => {
+              {displayedGames.map((game, index) => {
                 const isEditing = editingId === game.id;
                 const pct = Math.round(((game.hoursPlayed || 0) / maxHours) * 100);
                 return (
-                  <div key={`local-${game.id}`} className="library-item">
+                  <div key={`local-${game.id}`} className="library-item" style={{ animationDelay: `${index * 0.04}s` }}>
                     {/* Cover */}
                     {game.coverUrl
                       ? <img src={game.coverUrl} alt={game.title} className="library-item-cover" />
@@ -284,6 +286,7 @@ function LibraryView() {
                       {game.buyLink && game.buyLink !== '#' && (
                         <a href={game.buyLink} target="_blank" rel="noopener noreferrer" className="lib-buy-btn">Buy</a>
                       )}
+                      <button className="lib-similar-btn" onClick={() => setSimilarGame(game)}>Similar</button>
                       <button className="lib-delete-btn" onClick={() => deleteGame(game.id)}>Delete</button>
                     </div>
                   </div>
@@ -343,6 +346,9 @@ function LibraryView() {
         </div>
 
       </div>
+      {similarGame && (
+        <SimilarGamesPanel queryGame={similarGame} onClose={() => setSimilarGame(null)} />
+      )}
     </section>
   );
 }

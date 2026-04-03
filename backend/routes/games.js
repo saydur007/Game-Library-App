@@ -2,6 +2,7 @@ const express = require('express');
 const jwt     = require('jsonwebtoken');
 const Game    = require('../models/Game');
 const auth    = require('../middleware/auth');
+const { buildEmbedding } = require('../utils/embeddings');
 
 const router = express.Router();
 
@@ -54,6 +55,11 @@ router.post('/', auth, async (req, res) => {
       userId:          req.user.id
     });
     res.status(201).json({ success: true, message: 'Game added successfully', data: newGame });
+
+    // Fire-and-forget: generate embedding in background
+    buildEmbedding(newGame)
+      .then(embedding => Game.findByIdAndUpdate(newGame._id, { embedding }))
+      .catch(err => console.error('Auto-embed failed for game', newGame.id, err.message));
   } catch {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
